@@ -1,0 +1,2452 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>&#127808; Nowa Ziemia - &#128099;┇ciało-emocje</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/e39c40f69fb64d44390f0e8ceb70c779-08C9B.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">&#127808; Nowa Ziemia</div>
+        <div class="preamble__entry">------&#127809; świadomość &#127809;---- / &#128099;┇ciało-emocje</div>
+
+            <div class="preamble__entry preamble__entry--small">Ten pok&#243;j przeznaczony jest naszemu ciału i jak potrafi reagować na nasze tłumione wewnątrz emocje. Ciało to nasza świątynia, w kt&#243;rej &quot;mieszka&quot; Umysł i Dusza i to w jakim stanie jest, świadczy o naszej świadomości lub jej braku, jak i o r&#243;wnowadze lub dysharmonii w relacji pomiędzy Umysłem a Duszą, gdyż nasze Ciało jest naszym jedynym barometrem-wskaźnikiem-wyznacznikiem prawdy o naszym poziomie świadomości, kt&#243;rego nie oszuka nikt i nic. Rozmowy na temat tych wszystkich zagadnień prowadzimy na pokoju rozmowy czat.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 02:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="848377529399902228" id="message-848377529399902228" title="Message sent: 30-May-21 02:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pomocne mapy psychosomatycznych powod&#243;w naszych dolegliwości w ciele, b&#243;li, chor&#243;b, alergii, napięć itd. Pomoże w zrozumieniu i obserwacji swojego ciała.</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/Screenshot_20190905-085826-2C620.png">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/Screenshot_20190905-085826-2C620.png" alt="Image attachment" title="Image: Screenshot_20190905-085826.png (1,26 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="848377604028235806" id="message-848377604028235806" title="Message sent: 30-May-21 02:49 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/Screenshot_20190905-085813-B08BA.png">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/Screenshot_20190905-085813-B08BA.png" alt="Image attachment" title="Image: Screenshot_20190905-085813.png (1,06 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="848490986774724618" id="message-848490986774724618" title="Message sent: 30-May-21 10:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention">@everyone</span>
+Kochani co myślicie o tym, by zacząć na tym pokoju cykl o dolegliwościach i chorobach w ciele fizycznym? Co oznaczają i czym są na planie emocjonalnym i mentalnym?
+Jeśli jesteście tym zainteresowani, to napiszcie na pokoju <span class="mention">#&#128154;┇świadomość-czat</span> jakie dolegliwosci lub choroby chcielibyście wziąść na tapete jako pierwsze?
+A, ja na podstawie książki Lisy Bourbeau &quot;Twoje ciało m&#243;wi :Pokochaj Siebie&quot; napisze informacje o tym.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="RainbowHeart">
+                                <img class="emoji emoji--small" alt="RainbowHeart" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764359619338174474-6086A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">21</span>
+                            </div>
+                            <div class="chatlog__reaction" title="100">
+                                <img class="emoji emoji--small" alt="&#128175;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f4af-2188D.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction" title="blue_heart">
+                                <img class="emoji emoji--small" alt="&#128153;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f499-63D28.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="848491312591142932" id="message-848491312591142932" title="Message sent: 30-May-21 10:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Dla przykładu:
+<strong>Nerki</strong>
+Blokada emocjonalna:
+Problemy z nerkami wskazują na brak r&#243;wnowagi emocjonalnej i dotyczą przeważnie ludzi bardzo wrażliwych. Chory odczuwa niemoc w podjęciu decyzji dotyczacej jego potrzeb jak i tego co ma zamiar robić. Nie czuje sie wystarczająco mocny w relacjach z innymi ludźmi,odczuwa krzywdę płynącą, jego zdaniem z niesprawiedliwie trudnych sytuacji życiowych, w jakich przyszło mu się znaleźć. Ponadto łatwo ulega wpływom z zew. i chcąc pom&#243;c innym-przejmuje ich przekonania za swoje. Brak u takiej osoby zrowego rozsądku wobec samej siebie, nie potrafiac odr&#243;żnić co dla niej jest dobre, a co złe. Idealizuje sytuacje i ludzi i czuje dużą flustracje, kiedy te oczekiwania nie są spelnione. Łatwo krytykuje i oskarża innych o niesprawiedliwość przez co z czasem może stac sie ofiarą życia, pogłębiając tylko oczekiwania wzgledem innych.
+
+Blokada mentalna:
+Im groźniejsze schorzenia nerek, tym ważniejszy sygnał jaki przekazuje nam ciało,aby w końcu przestać uważać, że nie potrafimy stawiać czoła ludziom i sytuacjom. Ciągłe krytykowanie i por&#243;wnywanie się z innymi, powoduje, że widzisz swoje życie za niesprawiedliwe, a Twoja wielka wrażliwość jest źle wykorzystywana, a intensywna aktywność umysłową powoduje, że przeżywasz wiele niepotrzebnych emocji uniemozliwiajacych Ci dojście do r&#243;wnowagi. Powinieneś zacząć widzieć rzeczy i ludzi, takimi jacy są, bez tworzenia ideał&#243;w, uwierzyć we własne siły i możliwości, a poczucie braku sprawiedliwości znacznie sie zmiejszy, co pozwoli Ci wyjść z błędnego koła.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Jun-21 03:42 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 10:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="848496004533059595" id="message-848496004533059595" title="Message sent: 30-May-21 10:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Płuca</strong>
+Blokada emocjonalna:
+Płuca mają bezpośredni związek z życiem, pragnieniem życia i umiejętnością szczęśliwego życia.Choroby płuc wskazują, że człowiek ma trudności z przeżywaniem życia,jest smutny,ma poczucie beznadziei,braku wiary i chęci do dalszego życia lub czuje się przyduszony przez sytuację, inną osobę lub przez siebie samego. Taki człowiek ma wrażenie, że nie ma odpowiedniej przestrzeni,by się poruszać i swobodnie oddychać, męczy go życie w kt&#243;rym się znał i poprzez chorobę ciała, pr&#243;buje wyjść z przerastającej go sytuacji. Strach przed śmiercią czy cierpieniem własnym lub kogoś z niskich r&#243;wnież może mieć wpływ na stan płuc. Osoba, kt&#243;ra myśli o śmierci, że byłoby słabiej lepiej gdyby umarła,traci podstawowe paliwo dla ciała emocjonalnego.Kto boi się śmierci boi się r&#243;wnież przejścia do czegoś nowego...wszelkie radykalne zmiany mogą doprowadzić do uduszenia i uniemożliwiają entuzjazm niezbędny do zaczęcia nowych rzeczy w swoim życiu.
+
+Blokada mentalna:
+Ponieważ płuca są najważniejszymi dla potrzymywania życia organami,problem z nimi świadczy o bardzo ważnej informacji dla Ciebie od Ciebie. Twoje ciało m&#243;wi Ci byś przestał dramatyzować i zaczął dostrzegać pozytywne strony życia i jego możliwości bycia szczęśliwym. Zaczął oddychać pełną piersią wdychał życie na nowo, pozwolił sobie odczuwać pragnienia i docenił życie,bo sam sobie je wybrałeś w doświadczeniu jako Dusza. To wszystko pomoże Ci dostrzec emocjonalny,mentalny i duchowy wymiar Twego istnienia.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Jun-21 03:42 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="ok_hand">
+                                <img class="emoji emoji--small" alt="&#128076;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f44c-35C6F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 01:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="848536051261898762" id="message-848536051261898762" title="Message sent: 30-May-21 01:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Cukrzyca</strong>
+Blokada emocjonalna:
+Cukrzyca jest chorobą trzustki-jednego z ważniejszych gruczoł&#243;w ludzkiego organizmu i znajduje się bezpośrednio od wpływem energii splotu słonecznego (3 czakra). Ten ośrodek energetyczny odpowiedzialny jest za emocje,pragnienia i mentalny wymiar człowieka. Osoba chora na cukrzycę przeżywa wiele emocji, chce zbyt wiele dla siebie i dla najbliższych,jej marzeniem jest by każdy dostał sw&#243;j kawałek tortu.Nie wyklucza to zazdrości, jeżeli ktoś z jej otoczenia osiąga więcej niż ona. Osoba ta jest najczęściej oddana,ale poszukuje wzajemności,matkuje wszystkim wok&#243;ł, r&#243;wnocześnie bardzo często ma poczucie winy, jeżeli je pragnienia są niezauważane. To osoba o wielkie aktywności umysłowej, gdyż bezustannie zajęta jest poszukiwaniem sposob&#243;w dotarcia do innych,by spełniali jej oczekiwania, a tak wiele pragnień świadczy o wielkim wew.smutku, związanym z bezustannym poszukiwaniem miłości i czułości.
+Cukrzyca pojawia się u dziecka,gdy ma oo poczucie braku pełnej akceptacji.Wewnetrzny smutek powoduje uczucie pustki, kt&#243;ry dziecko koniecznie musi czymś wypełnić i będzie w r&#243;żny spos&#243;b poszukiwał uwagi ze strony otoczenia.
+
+Blokada mentalna:
+Cukrzyca pojawia się aby Cię ostrzec, że najwyższy czas,by ustąpić i zdać się na naturalny bieg rzeczy,zamiast za wszelką cenę chcieć wszystko kontrolować. Przestań uważać,że misją Twojego życia jest zapewnić każdemu szczęście. Należysz do ludzi, kt&#243;rzy dostają to czego chcą,ale pamiętaj, że nie wszyscy chcą tego samego. Poświęć trochę czasu na czerpaniu radości z tego co daje życie, zamiast bez przerwy zastanawiać się,jak szybko osiągnąć to czego pragniesz. Do tej pory wierzyłeś, że tego czego pragniesz,pragniesz dla  innych,czas zrozumieć, że tak naprawdę pragniesz tego dla siebie. Zr&#243;b bilans tego co już osiągnąłeś i ciesz się tym co masz,a nie biczuje się za to czego nie udało ci się zrealizować.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Jun-21 03:43 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 03:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="848575370122231818" id="message-848575370122231818" title="Message sent: 30-May-21 03:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Nowotw&#243;r</strong>
+Blokada emocjonalna:
+Choroba pojawia sie u os&#243;b, ktore w dzieciństwie spotkało bardzo bolesne przeżycie ze strony bliskiej mu osoby(rodzice, dziadkowie, rodzenstwo) i przeżywały to w samotnosci.
+Emocjonalne traumy z dzieciństwa (porzucenie, odrzucenie, przemoc, zdrada) mogą spowodować poważne choroby w dorosłym życiu. Człowiek z takim głębokimi traumami tak bardzo pragnie miłości, że najczesciej wypiera urazy, żal, nienawiść z przeszłości, kt&#243;ry czuł, nie pozwalajac sobie za wszelką cene przyznać sie do własnych uczuć. Tymczasem negatywne uczucia rosną i gromadzą sie przy każdym zdarzeniu przypominajacym stare sytuacje...
+Choroba moze pojawić sie w trakcie blokady, przy dojściu do emocjonalnej granicy i wybuchu tych uczuc na zew. jak i w momencie gdy człowiek poradził sobie właśnie z problemem.
+
+Blokada mentalna:
+Największym problemem jest myślenie, że odczuwanie negatywnych uczuć takich jak złość, gniew, nienawiść, złość wzgledem bliskiej osoby (rodzic lub ktos z rodziny), ktora w dziecinstwie wyrządziła nam krzywdę jest czymś złym. Czesto ludzie po traumach czujacy w środku żal i gniew, myślą, ze to oznacza bycie złym człowiekiem,dlatego tłumią te uczucia w sobie, wmawiajac sobie, że ich nie czują. Wybaczenie &quot;oprawcy&quot; jest ważnym czynnikiem w procesie uwalniania sie od traum, ale niewystarczającym. Największą trudnością dla takich os&#243;b jest wybaczenie samemu sobie, że mialo się lub ma tak wiele uczuć nienawiści i pragnienia zemsty. Wybacz dziecku w Tobie, kt&#243;re cierpiało w ciszy i samotnosci i czuło gniew i chęć zemsty i nie miało w dziecinstwie nikogo kto pocieszy, przytuli i wysłucha. Przestań myśleć, ze czucie urazy i gniewu oznacza bycie zlym człowiekiem. To nie jest złe, to ludzkie, chodzi o to by przed tym nie uciekać, tylko umieć sie do tego przed sobą przyznac.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Jun-21 03:43 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 07:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="848633027252453396" id="message-848633027252453396" title="Message sent: 30-May-21 07:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Stopa ludzka to zakończenie 7200 nerw&#243;w, kt&#243;re mają bezpośrednie połączenie z m&#243;zgiem, a r&#243;wnocześnie z wszystkimi częściami ciała.</span>
+
+                                <span class="chatlog__edited-timestamp" title="31-May-21 09:18 AM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/IMG_20210530_204406-D6D1F.jpg">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/IMG_20210530_204406-D6D1F.jpg" alt="Image attachment" title="Image: IMG_20210530_204406.jpg (263,01 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="RainbowHeart">
+                                <img class="emoji emoji--small" alt="RainbowHeart" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764359619338174474-6086A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/6ab28ec5bfdabff2dc8beecbda301b87-3CF9B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Genesis#2173" data-user-id="735886791810482248" style="">Genesis</span>
+
+
+        <span class="chatlog__timestamp">01-Jun-21 09:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="849207713615183892" id="message-849207713615183892" title="Message sent: 01-Jun-21 09:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tak samo jak st&#243;pki, możemy sami sobie robić masaż dłoni. Sprawdziłam na sobie, pomaga, w szczeg&#243;lności przy b&#243;lach kobiecych. <img loading="lazy" class="emoji " alt="😉" title="wink" src="https://twemoji.maxcdn.com/2/svg/1f609.svg"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/Mapa_dloni_web_1-4F3BE.png">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/Mapa_dloni_web_1-4F3BE.png" alt="Image attachment" title="Image: Mapa_dloni_web_1.png (645,48 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="RainbowHeart">
+                                <img class="emoji emoji--small" alt="RainbowHeart" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764359619338174474-6086A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">02-Jun-21 05:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="849688816494051364" id="message-849688816494051364" title="Message sent: 02-Jun-21 05:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Tarczyca</strong>
+Blokada emocjonalna:
+Gruczoł tarczycy łączy ciało z czakrą gardła, odpowiadającą za zdolności decyzyjne, wolę działania i realizacji cel&#243;w zgodnie z prawdziwymi potrzebami,dzieki temu rozwija się nasza osobowość. Czakra ta jest bezpośrednio związana z czakrą podbrzusza znajdującą się w okolicach narząd&#243;w płciowych. Właśnie dlatego, że dwa ośrodki są ze sobą powiązane, należy spodziewać się, że problem w jednym pociąga za sobą problem w drugim. Osoba cierpiąca na nadczynność tarczycy za dużą wagę przywiązuje do sfet&#39;ry działania,pragnie tworzyć swoje życie, ale zabrania sobie tego, gdyż jest przekonana, że musi tworzyć je tym kt&#243;rych kocha. Nie sprawdza własnych potrzeb zanim zacznie działać, bardzo często chce coś innym udowodnić albo za wszelką cenę pragnie ich miłości. Wymaga bardzo dużo od siebie jak i od innych, często obawia się też tego, że nie potrafi działać wystarczająco szybko, że ma związane ręce. Jej zdaniem wszystko trzeba robić szybko, jednak postępowanie nie jest słusznie umotywowane i nie wynika z prawdziwych potrzeb. To typ osoby, kt&#243;ra jest wstanie powiedzieć cokolwiek, nawet skłamać, po to tylko by coś się działo.
+Osoba cierpiąca na niedoczynność tarczycy ma większą chęć działania, niż sobie n to pozwala. Nie prosi wystarczająco o pomoc, by uzyskać to, co pomoże jej w realizacji pragnień,boi sie zanim jeszcze przejdzie do czyn&#243;w i ez działa za wolno. Nie jest dość związana ze swoimglebokim chcę,a czasownik ten ma w sobie wielką moc sprawczą. Należy dodać, że czakra gardła jest pomocna w otwarciu sie na dostatek,dlatego,ze wsłuchując się w nasze prawdziwe potrzeby, honorujemy własne jestem, a gdy ono jest w prawdziwej harmonii, człowiek może żyć we wszystkiego rodzaju dostatku:szczęściu, zdrowiu, miłości, pełni d&#243;br materialnych.
+
+Blokada mentalna:</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Jun-21 03:43 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="849689451742625802" id="message-849689451742625802" title="Message sent: 02-Jun-21 05:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nadczynność tarczycy wskazuję, że powinniście iść w kierunku umiarkowania, poświęcić czas na sprawdzenie czego tak naprawdę chcesz, aby życie sprawiało Ci radość. Nie musisz wciąż działać, by czuć się ważnym, uznanym i kochanym. Przestań też myśleć, że wszystko jest pilne. Wr&#243;ć do naturalnego rytmu, to sprawi radość wszystkim kt&#243;rzy Cie otaczają. Ponieważ gruczoł tarczycy odpowiedzialny jest za rozw&#243;j, wykorzystując siłę swego chcę zgodnie z własnymi pragnieniami, będziesz wstanie rozwijać się i dojrzewać duchowo i w ten spos&#243;b zrozumiesz, po co pojawiłeś się na Ziemi. Jeśli gruczoł nie dział prawidłowo i nie jest wystarczająco aktywny uświadom sobie, że tylko Ty jesteś w stanie sprawić by działał odpowiednio. Przestań myśleć, że nie masz prawa żyć tak jak pragniesz i nawet jeśli w dzieciństwie nauczyłeś się bać wyrażać swoje prośby, ciało podpowiada Ci, że teraz możesz przejść do nowego etapu życia.
+Być może musisz przebaczyć tym wszystkim, kt&#243;rzy w przeszłości Cie urazili i sprawili, iż uważasz, że nie jesteś wstanie zrobić zbyt wiele samodzielnie. Pamiętaj, że te oso y pojawiły się w Twoim życiu po to, by pokazać Ci po co pojawiłeś się na Ziemi. Przekrocz sw&#243;j strach, aby urzeczywistnić wielką wolę tworzenia.</span>
+
+                                <span class="chatlog__edited-timestamp" title="02-Jun-21 05:56 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="RainbowHeart">
+                                <img class="emoji emoji--small" alt="RainbowHeart" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764359619338174474-6086A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">14</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">03-Jun-21 03:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="850020837640896542" id="message-850020837640896542" title="Message sent: 03-Jun-21 03:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Choroby psychiczne</strong>
+Blokada emocjonalna:
+Choroba psychiczna ma bezpośredni związek z poziomem JESTEM danej osoby, czyli z określeniem tożsamości. Osoba ta nie jesy pewna, kim tak naprawdę jest, odcina sie od swoich odczuć i za wszelką cenę pragnie zrozumieć a nie odczuwać. Aby zrozumieć przyczyny choroby psychicznej trzeba wr&#243;cić do dzieciństwa, gdyż prawdopodobnie dziecku nie pozwolono być sobą i w konsekwencji stworzyło sobie ono sw&#243;j wew. świat, w ktorym odnajdywało schronieni. Czesto pojawiaja sie obsesje, a osoba ta obarcza wlasnymi zobowiązaniami innych,nie chcac zmierzyć sie z realnym życiem,ucieka w chorobę psychiczną, tak jak inni uciekają w alkoholizm, lekomanię czy narkotyki.
+
+Blokada mentalna :
+Jednym ze sposob&#243;w dajacym wymierne rezultaty jest wybaczenie,jednak osoba dotknięta psychicznymi obsesjami wcale nie chce rozwiazacswoich problemow, woli bowiem od nich uciekać. Ci, ktorzy chca jej pom&#243;c, powinni robić to z miłością i cierpliwością, pomagając jej nauczyc sie wybaczac samej sobie oraz innym.
+W pewnej formie zaburzeń umyslowych chory widzi Boga i szatana jako tych ktorzy istnieją po to by oceniac i karać i przezywa w zwiazku z tym wiele lek&#243;w. Strach przed szatanem jest strachem przed rodzicami i aby wyzdrowieć, nalezy przede wszystkim przyjąć inne znaczenie sł&#243;w B&#243;g i szatan, uwierzyc, że nie są to osoby, a raczej formy energi zyjave w nas jako stan ducha.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Jun-21 03:43 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850022048062242868" id="message-850022048062242868" title="Message sent: 03-Jun-21 03:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Śledziona</strong>
+
+Blokady emocjonalne:
+Dolegliwości ze śledzioną świadczą o tym, że człowiek tworzy sobie zbyt wiele zmartwień, lek&#243;w i przeżywa je do tego stopnia, że stają się one obsesją i całkowicie zabierają mu radość życia, uniemożliwiając sobie tym samym pragnienie tego co byłoby dla niego przyjemne. Problemy ze śledzioną to przejaw człowieka, ktory stracił siłę do walki i popadł w totalne zniechęcenie, czuje się wypalony i nie ma żadnych rezerw do pokonywania codziennych trudności. Paradoksalnie, ta sama osoba może w towarzystwie śmiać się ze swoich problem&#243;w. Śmieje sie wśr&#243;d ludzi, a płacze tylko w ukryciu. 
+
+Blokada mentalna:
+Poprzez dolegliwosci ciało probuje pom&#243;c ponownie nawiązać kontakt z wew. siłą człowieka i zdolnosciami do stawiania czoła życiowym problemom. Przestań wierzyć, że Twoje życie jest dramatem, nie przejmuj się aż tak. Śledziona opiekuje sie krwią i jej zadaniem jest zwalczyć wszystkie infekcje i gdy jest chora m&#243;wi Ci bys spojrzał na całe swoje życie i byś stawił czoła agresjom z zewnątrz. Musisz też pozwolić sobie na pragnienia i uwierzyć i uwierzyć, że jesteś wystarczająco silny, by je zrealizować.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850022307325935637" id="message-850022307325935637" title="Message sent: 03-Jun-21 03:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Kamienie</strong> 
+
+Blokada emocjonalna:
+Metafizyczna interpretacja powstawania kamieni zależy od miejsca, gdzie występują, należy zatem sprawdzić, jakoe są funkcje tej czesci ciała, w ktorej sie pojawiają. 
+Osoba, kt&#243;ra gromadzi tak wiele nieczystości, że tworzą one kamienie od bardzo dawna pielegnuje i skrywa w sobie ciążące jej mysli pelne agresji, niezadowolenia i zazdrosci. Osoba cierpiaca z powodu kamieni najczesciej jest sztywna i nie pozwala sobie na swobodne odczuwanie. 
+
+Blokada mentalna:
+Bardzo często kamienie w pęcherzu moczowym pojawiają sie gdy ktoś czegoś pragnie, a działa całkowicie odwrotnie np. ktoś chce ruszyc z miejsca, ale zostaje powstrzymany przez osobę z zew. lub w ostatniej chwili sam sie wycofuje.
+Kamienie w woreczku ż&#243;łciowym to oznaka obawy przed stratą dla niej czegoś ważnego i czuje, że ktoś wtargnął na jej terytorium ale tłumi ten strach w sobie nadal nic nie robiąc. 
+Takie osoby powinny przestać wciąż kalkulować i zacząć kierować sie wlasnymi potrzebami i intuicją, a przede wszystkim puścić swoje emocje.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Jun-21 03:45 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">03-Jun-21 09:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="850115409926815754" id="message-850115409926815754" title="Message sent: 03-Jun-21 09:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Miesiączka</strong>
+Problemy z miesiączką oznaczają trudności z zaakceptowaniem własnej kobiecości. Od okresu dojrzewania kobieta przeżywa silny konflikt ze swoją matką, kt&#243;ra jest dla niej pierwszym modelem płci żeńskiej. NIe oznacza to, że sama jest mało kobieca, uznaje jej rolę za dość niewdzięczną, w kt&#243;rej należy stosować się do zbyt wielu reguł. Czasami zazdrości mężczyźnie i podświadomie pragnie nim być, chce przeżywać rzeczy jakich według niej kobieta przeżywać nie może. Często stara się też odgrywać w życiu role męskie, ale podświadomie czuje się z tego powodu winna.
+
+Blokada mentalna:
+Ciało daje Ci wskaz&#243;wki,że Twoje zakorzenione przekonania dotyczące kobiecości są nie prawdziwe dlatego cierpisz i nie możesz być szczęśliwa.To ,że tak bardzo jesteś skł&#243;cona ze sobą sprawia,że emocje jakie odczuwasz, dodatkowo burzą Tw&#243;j wew. spok&#243;j. Możesz robić już co Ci się podoba,gdyż dziedziny męskie są już dostępne dla kobiet i wiele z nich się na nie decyduje. Nie musisz już przestrzegać reguł m&#243;wiących co wolno, a czego nie wolno robić kobiecie. Zastan&#243;w się nad rolą męską w swoim życiu i czy nie warto czasem oddać mężczyźnie to co męskie zachowując przy tym niezależność. Być może Twoje problemy związane są z przekonaniami jakie zaszczepiono Ci w domu rodzinnym, może m&#243;wiono Ci ,że miesiączka kojarzy się z grzechem i jest czymś, czego należy się wstydzić, czymś brudnym, nawet chorobą. Tylko od Ciebie zależy, czy pozbędziesz się tych niedorzecznych przekonań i zaakceptujesz fakt, że miesiączka jest bezbolesną funkcją organizmu, całkowicie naturalną i niezbędną w życiu kobiety.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">03-Jun-21 11:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="850135313477271572" id="message-850135313477271572" title="Message sent: 03-Jun-21 11:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>DLACZEGO TAK TRUDNO ODZYSKAĆ MIEDNICĘ?</strong>
+O taśmie miednicy.
+Część I: pierwsze dwa lata życia dziecka.
+Miednica jest ważna, jest pełna doświadczeń i historii. Niesie w sobie treści, kt&#243;rych nie chcemy lub nie możemy pamiętać. Jest domem dla przyjemności i żywotności. Stanowi CENTRUM przekazywania, ale i przechowywania informacji. Jest nadawcą i odbiorcą bodźc&#243;w tworząc sieć złożonych powiązań z psychogennością, narządami wewnętrznymi, a w końcu z czymś tak namacalnym, jak narząd ruchu. W ten spos&#243;b powstaje potężna choć misterna plecionka zależności o bardzo szerokim zasięgu działania. Miednica jest też zawłaszczona kulturą i religią, kt&#243;re w „prezencie” nadały znaczenie jej funkcjom, cechując winą, karą, nieczystością, wstydem i grzechem. 
+Spotykając się z tą mnogością aspekt&#243;w, wielowymiarowością połączeń, już od początku wiem, że to opracowanie będzie zdecydowanie „nie dość”, by oddać złożoność miednicy. Mam jednak nadzieję, że będzie „dość”, by pozwolić Czytelnikowi odczuć swoją miednicę, być może połączyć objawy z doświadczeniami, a w końcu znaleźć się na ścieżce odzyskiwania tego obszaru dla siebie. I właśnie to kryterium użyteczności dla Odbiorcy przyjmuję w tym opracowaniu.
+GDYBYŚ ZECHCIAŁ(A) POSŁUCHAĆ MOJEJ HISTORII, A NIE ZAJMOWAĆ SIĘ TYLKO OBJAWAMI…
+Co jest zapisane w miednicy, a nie może być uznane?
+Właściwie jak to się dzieje, że miednica zbiera tak wiele przeciążeń? Budowa anatomiczna na pewno ma na to wpływ, wielość funkcji oczywiście też, pionowa pozycja ciała r&#243;wnież. Jednak kwestią, o kt&#243;rej mało się m&#243;wi i w ograniczonym stopniu bierze pod uwagę choć ma ona kluczowe znaczenie w nacechowaniu przeciążeniowym miednicy jest to, jak byliśmy traktowani, a w zasadzie, jak traktowana była nasza pupa, genitalia i funkcje z nimi związane już od pierwszych dni życia.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 07:42 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850135558218448917" id="message-850135558218448917" title="Message sent: 03-Jun-21 11:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">• JAK MNIE TRZYMANO?
+Przy taśmie głowy pisałam, jak ważne jest jej uziemienie. Trzymając małe dziecko nie tylko podtrzymujemy mu gł&#243;wkę, ale mamy drugą, aktywną rękę pod pośladkami. I to jest kolejne uziemienie, kt&#243;re zachodzi w trakcie najważniejszego aktu dbania o dziecko: TRZYMANIA I POMIESZCZANIA (przyjmowania) go. Można powiedzieć, że to, jak byliśmy trzymani, daje nam trzymanie na życie. Na ile ręce trzymające były pewne, czułe i obecne, a na ile tylko silne i sprawne?
+• KU NIEZALEŻNOŚCI
+Z miednicy wyrastają nogi, kt&#243;re bardzo cenią sobie wolność, ruchliwość i ekspresyjność. Część z nas (30 plus) zapewne była dość ciasno zawijana „na baczność”. Niestety wyjściowo już na cechowało to biodra napięciem. Ale przychodzi czas, kiedy dziecko z czworak&#243;w (albo i nie), zaczyna wyciągać pupę do nieba, chcąc zasmakować pionu. A gdy już go złapie przychodzą pierwsze kroki, wraz z nimi upadki i badanie tego wszystkiego, co można zwiedzić SAMODZIELNIE, na własnych nogach!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850135639903043585" id="message-850135639903043585" title="Message sent: 03-Jun-21 11:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Natrafiamy tu na ważny moment rozwojowy w historii miednicy, kt&#243;ry wpłynie na stan napięć i powstałych zawieszeń, ale też na naszą psychikę i spos&#243;b reagowania w dorosłym życiu. Wyobraźmy sobie sytuację, kiedy dziecko (8-10 miesięczne) jest stymulowane lub wręcz wypychane do szybkiego pionizowania się. Gdy jego samodzielność jest wygodna, czy priorytetowa dla otoczenia. Maluch jest zachęcany do chodzenia, nagradzany zadowoleniem otoczenia, podtrzymywany pod pachami, a dzieje się to za wcześnie w stosunku do momentu rozwojowego człowieka. Aparat ruchu nie jest przygotowany na przyjęcie pionowego przeciążenia. Dziecko musi coś SPIĄĆ W SOBIE nie tylko w wymiarze fizycznym, ale też wewnętrznie po to, by sprostać wymaganiom dorosłych. W jakimś sensie maluch NIE MA ODWROTU od własnych umiejętności/niezależności, bo jest od niego oczekiwana samodzielność, a gdy do tego wycofywane jest wsparcie w postaci noszenia/wożenia go, następuje przeciążenie zbyt szybkim rozwojem psychomotorycznym. Dlatego między innymi tak trudno się ucieszyć ze zbyt szybko pojawiającego się młodszego rodzeństwa.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850135730654412800" id="message-850135730654412800" title="Message sent: 03-Jun-21 11:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">• CO STOPY M&#211;WIĄ O MIEDNICY?
+Trafne powiedzenie ortopedyczne m&#243;wi: „biodra płaczą kolanami”. Można by powiedzieć, że czujkami miednicy są nie tylko kolana, ale r&#243;wnież stopy. To właśnie tam możemy spotkać ślady przeciążeń związanych ze zbyt szybką pionizacją czy z brakiem wsparcia. Nadmiernie wydrążone sklepienia st&#243;p czy palce, o skr&#243;conych długościach, wszczepione w ziemię, czy wychłodzone stopy - to wszystko m&#243;wi o historii napięciowej, kt&#243;rej początek miał miejsce zwykle w miednicy, a kt&#243;ra znalazła swoje odzwierciedlenie w stopach.
+Możemy też zobaczyć obraz przeciwny, kiedy właściwie nie ma łuku stopy, wręcz leży on na ziemi. Mamy wrażenie, jakby kolana zapadały się do wnętrza i jakby dociążenie za chwilę miało załamać całą konstrukcję podporową ciała. Widzimy, jak jakieś doświadczenie z przeszłości było zbyt obciążające dla rozwijającego się organizmu, jak bardzo przygniotło do ziemi.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850135965674111046" id="message-850135965674111046" title="Message sent: 03-Jun-21 11:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">• KIEDY NIE DAJESZ MI ODEJŚĆ…
+Wyobraźmy sobie teraz odwrotną sytuację, kiedy dziecko jest zatrzymywane, nie może swobodnie wspinać się do g&#243;ry i wypuszczać w nowe rejony. Jeśli do tego dodamy obraz opiekuna, kt&#243;ry trzyma dziecko blisko siebie i przy każdym zachwianiu krzyczy: „uważaj!” strasząc dziecko, albo nadmiarowo lamentując przy upadkach, maluch musi powstrzymać swoje pierwotne impulsy do eksplorowania świata. To zatrzymanie zawsze będzie budzić złość, lęk czy gniew, bo jest przeciwko naturalnej potrzebie rozwojowej. R&#243;wnież w tym wypadku nastąpi spięcie, tym razem w samych mięśniach, kt&#243;re muszą się skurczyć, by zatrzymać impuls do ruchu. Jeśli dodatkowo hamowana jest możliwość wyrażania niezgody na zatrzymywanie, dziecko jest w pułapce między potrzebą rozwoju a zadowalaniem otoczenia.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136127683428352" id="message-850136127683428352" title="Message sent: 03-Jun-21 11:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Te 2 ilustracje przedstawiają brak lub nadmiar wsparcia, kt&#243;ry w jakimś stopniu jest zapisany w każdym z nas. Dzieje się to w kluczowym momencie rozwojowym, w czasie praktykowania ku autonomii i doświadczania r&#243;żnorodności świata. Dziecko potrzebuje OPUŚCIĆ SYMBIOZĘ I ODDZIELIĆ się od matki.  Chce odwr&#243;cić od niej głowę, zejść z kolan, chodzić i uciekać. Te wszystkie etapy separacji psychicznej mają swoje środowisko przemian w ciele, w jego rozwijających się możliwościach. To właśnie dlatego przez ciało mamy tyle dostępu do pracy z zapisanymi konfliktami, kt&#243;re powstały poza naszą pamięcią/ świadomością, a są dziś aktywne w naszym funkcjonowaniu. W rozwoju psychofizycznym człowieka to jeden z ważniejszych moment&#243;w. Margaret Mahler nazywając ten czas „romansem ze światem” wnikliwie oddaje całą dynamikę wyjścia z symbiozy ku autonomii. Dziecko potrzebuje praktykować, ale też potrzebuje wr&#243;cić wiedząc, że matka będzie czekać. Dziś wiemy, że to właśnie w tym momencie kiełkuje konflikt związany z zaburzeniem typu borderline.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136200341225523" id="message-850136200341225523" title="Message sent: 03-Jun-21 11:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Znając rozw&#243;j psychofizyczny dziecka i siły konfliktowe, jakie mogą się wtedy zawiesić, łatwiej zrozumieć skąd tyle r&#243;żnorodnych, pozornie odszczepionych objaw&#243;w somatycznych. Od słabości w nogach przez b&#243;le dolnych plec&#243;w, objawy brzuszne do spiętych żwaczy oraz objaw&#243;w z taśmy karkowej i przeponowej: pełny przegląd somatyczny. Siłę doświadczeń konfliktowych zapisanych w miednicy związanych z niemożnością odseparowania się będzie odzwierciedlać wielopoziomowa segmentacja ciała, rozpoczynająca się właśnie od oddzielenia jej od reszty ciała. Pozwala to wyhamowywać zderzanie się sił konfliktowych i uczuć z nimi związanych. Można by powiedzieć:
+• „albo jestem blisko Ciebie, na zawsze z Tobą i jesteś całkowicie moja”,
+• „albo nie chcę Cię wcale, do niczego nie jesteś mi potrzeba i nigdy do Ciebie  nie wr&#243;cę”.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136285183475752" id="message-850136285183475752" title="Message sent: 03-Jun-21 11:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ochronne rozszczepienie uczuć przez fragmentację napięciową w ciele chroni przed mieszaniem się „dobrej mamy” ze „złą mamą” i czuciem tak trudnej do przeżywania ambiwalencji: 
+JAK BLISKO CIEBIE MOGĘ BYĆ, BY STAĆ SIĘ SOBĄ? 
+Kiedy separacyjne potrzeby rozwojowe nie były właściwie wspierane, powstaje sytuacja konfliktowa dla dziecka, gdzie rozwiązaniem staje się przeżywanie świata w bieli lub czerni, z niedostępnością odcieni szarości. Tak tworzona tożsamość jest krucha, chwiejna, nie mogąca połączyć czerni i bieli w sobie, a więc z przymusem stawania się jednym lub drugim.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136365488537610" id="message-850136365488537610" title="Message sent: 03-Jun-21 11:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">• CZAS NOCNIKA. CO NAM ROBI ZA SZYBKI TRENING CZYSTOŚCI?
+Kolejnym kluczowym momentem rozwojowym dla za stymulowania napięciowego miednicy może być za szybko wprowadzony trening czystości. Nasze zwieracze są w pełni gotowe do funkcjonowania w czasie ok. 2, 5 roku życia. Przed tym okresem dziecko, by zadowolić opiekuna lub ze strachu czy frustracji będzie w stanie wpływać na kontrolę wydalania za pomocą struktur, kt&#243;re za to NIE odpowiadają. M&#243;wiąc obrazowo będziemy spinać pupę i zaciskać nogi, by tylko załatwić się do nocnika i wywołać zachwyt na twarzy opiekuna. Jeśli oczekiwanie kontroli wydalania jest wprowadzone za szybko nasze ciało/my nauczymy się wpływać na nie napięciem tkanek okalających: dna miednicy, pośladk&#243;w, wnętrza ud, angażując przy tym r&#243;wnież przeponę czy żwacze. To właśnie w tym momencie kiełkuje masochistyczne doświadczenie wytrzymywania. 
+W warstwie subtelnej decydujące jest, jak nasi opiekunowie mieli stosunek do naszego obszaru wydalniczego. Na ile towarzyszyło temu poczucie niechęci, przeżycie nieczystości, na ile przesadna potrzeba szorowania, dezynfekowania, a na ile obrzydzenie. Jak byliśmy dotykani, jak podcierani? A może godzinami przetrzymywani na nocniku, upokarzani brakiem ubrania, czy w końcu bici, być może w gołą pupę. Warto tutaj powiedzieć, że dziecko przeżywa swoje pierwsze kupy, jako akt kreacji. To pierwsze tworzenie: „coś wychodzi ze mnie i ja to zrobiłem!”. Zachwycajmy się więc kupami naszych dzieci.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136468172832798" id="message-850136468172832798" title="Message sent: 03-Jun-21 11:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">PAMIĄTKI ZAPISANE W MIEDNICY- PODSUMOWANIE.
+Część z nas już jako dorośli ludzie ma doświadczenie „zagadkowych” zakwas&#243;w w pośladkach. Zwykle dopiero po czasie uświadamiamy sobie, że mieliśmy na przykład bardzo nieprzyjemny poranek. Wtedy jesteśmy w stanie odczuć, jak cała okolica jest ściśnięta, jakby zwinięta do środka i obkurczona. Im silniejsze towarzyszą nam objawy przy jednoczesnym NIECZUCIU NAPIĘCIOWYM siebie, tym silniejszy zapis przeciążeniowy miednicy niesiemy. Dodatkowo możemy spodziewać się:
+• b&#243;l&#243;w dolnych plec&#243;w, schodzących na pośladki,
+• nie odczuwania potrzeb fizjologicznych przez wiele godzin,
+• bolesnych, ciężkich, nabrzmiałych n&#243;g- zwłaszcza łydek (skurcze w nocy), 
+• poczucia n&#243;g z waty,
+• bolesnych, nieregularnych miesiączek,
+• zaburzeń zwieraczy,
+• zatwardzeń, hemoroid&#243;w,
+• nieprzyjemnych, bolesno - mdlących zacisk&#243;w w podbrzuszu,
+• b&#243;l&#243;w i przeskakiwań w biodrze, i niestety wiele innych.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136651920834570" id="message-850136651920834570" title="Message sent: 03-Jun-21 11:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Są też bardziej nie objawowe, raczej nawykowe zachowania typu: „ja tak mam od zawsze”. Niekt&#243;rzy zatem m&#243;wią, że „wiozą siki do domu”, inni mogą załatwić się tylko w swojej łazience, niekt&#243;rzy trzymają, tak długo, że dopiero b&#243;l podbrzusza m&#243;wi: „chyba muszę się wysikać”.
+Powyższe doświadczenia i ich objawy możemy zwykle zobaczyć w jednym z wzorc&#243;w przeciążeniowych miednicy: SKULONYCH/ SCHOWANYCH POŚLADK&#211;W. Nawet dziś, kiedy ktoś chciałby nas uderzyć w pupę, odruchowo uciekniemy nią do przodu, tak jakbyśmy właśnie chcieli ją schować. Rozpoznanie swojego sposobu trzymania jest jednym z ważniejszych krok&#243;w na ścieżce do kontaktu z własna miednicą: 
+NA ILE IDĘ PRZEZ ŻYCIE Z TYM WZORCEM? 
+Co mi to robi? Przed czym chroni, a w czym ogranicza? Czy dalej potrzebuję tej OBRONY? Czy mam na nią wpływ? 
+O tym w wszystkim w kolejnych częściach.
+Marzena Barszcz
+Psychoterapeutka w Analizie Bioenergetycznej.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136741214289920" id="message-850136741214289920" title="Message sent: 03-Jun-21 11:19 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/29663161_1659141370789083_3227993213946367-CE7BC.png">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/29663161_1659141370789083_3227993213946367-CE7BC.png" alt="Image attachment" title="Image: 29663161_1659141370789083_3227993213946367_o.png (3,23 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="850136811657363507" id="message-850136811657363507" title="Message sent: 03-Jun-21 11:20 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/29664697_1659141024122451_1038931449479554-7B160.png">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/29664697_1659141024122451_1038931449479554-7B160.png" alt="Image attachment" title="Image: 29664697_1659141024122451_1038931449479554283_o.png (2,83 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">09-Jun-21 03:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="852199583793545277" id="message-852199583793545277" title="Message sent: 09-Jun-21 03:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Depresja</strong>
+Blokada emocjonalna:
+Depresja to spos&#243;b, aby uwolnić się od wszelkiego rodzaju napięć, zwłaszcza emocjonalnych,jesteśmy wtedy na granicy tego, co jesteśmy wstanie znieść czy zaakceptować. Osoby z depresją mają zadawniony i do tej pory nie rozwiązany konflikt z rodzicem przeciwnej płci. Wyjaśnia to fakt, że osoba pogrążona w depresji często oskarża swojego partnera, dochodzi do tzw. transferu. Postawa jaką przybiera chory wobec partnera jest postawą, kt&#243;rą chciałby przyjąć wobec rodzica, ale powstrzymał się przed tym. Odrzucając pomoc i leczenie podtrzymuje urazę lub nienawiść wobec rodzica, pogłębiając własny b&#243;l. Im gorszy stan choroby, tym gorsza rana w dzieciństwie. Takie rany to :odrzucenie, porzucenie, poniżanie, zdrada i niesprawiedliwość. Tak silne spustoszenie mentalnejak depresja czy psychozamaniakalno-depresyjna, może zostać wywołana jedynie przez zdarzenie przeżyte w całkowitej samotnosci. Gdy chory był dzieckiem, nie było nikogo kto m&#243;głby wysłuchać jego lek&#243;w i pytań. Osoba taka nie miała okazji nauczyć się zaufania do innych,jej pragnienia zostały zablokowane, a ona zamknęła się całkowicie na innych pielęgnując w sobie silny uraz lub nienawiść.
+
+Blokada mentalna:
+Osoba pogrążona w depresji najczęściej nie chce żadnej pomocy, dlatego to jej najbliżsi prubują coś zmienić. Jeśli masz kontakt z taką osobą, bądź twardy w relacjach z nią i tłumaczyć, że nikt nie zmieni jej stanu, tylko ona może to zrobić.
+Chory musi zrozumieć, że jego stan wynika z głębokiej rany na poziomie być zadanej mu w dzieciństwie,dlatego odrzuca on to kim jest,a największym strachem jest strach przed odrzuceniem. Chory potrzebuje uświadomić sobie, to że jeśli został raz odrzucony nie oznacza, że będzie odrzucany cały czas i że rodzice go nie kochali. Rodzic, kt&#243;ry odrzuca swoje dziecko, sam kiedyś był odrzucony i sam siebie odrzuca.
+Etapem wychodzenia z depresji jest uświadomienie sobie problemu, następnie wybaczenie rodzicowi i sobie.</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Jun-21 01:44 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="852199596025315368" id="message-852199596025315368" title="Message sent: 09-Jun-21 03:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kolejnym krokiem jest powiedzenie i rozmowa z rodzicem, a następnym praca nad poczuciem własnej wartości. Jeśli nie umiesz sam tych wartości zobaczyć, poproś najbliższych by powiedzieli Ci co w Tobie widzą. Bardzo często człowiek depresyjny, kt&#243;ry ma myśli samob&#243;jcze, pragnie, aby jakąś jego część umarła, by zrobić miejsce na coś całkiem nowego. Myli część siebie z całym sobą.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="852200413041262622" id="message-852200413041262622" title="Message sent: 09-Jun-21 04:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">P. S
+Kilka sł&#243;w ode mnie w tej sprawie 
+(z moich doświadczeń w pracy z ludźmi wiem, że nie muszą to być konflikty z rodzicem płci przeciwnej, jest to raczej konflikt w energi meskiej vs żeńskiej, co nie ma związku z płcią rodzica <img loading="lazy" class="emoji " alt="😉" title="wink" src="https://twemoji.maxcdn.com/2/svg/1f609.svg">)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">09-Jun-21 04:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="852206342486884372" id="message-852206342486884372" title="Message sent: 09-Jun-21 04:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Łysienie</strong>
+Blokada emocjonalna :
+Owłosienie jest dodatkową osłoną ciała wszystkich zwierząt oraz człowieka, zatem znaczy to, iż osoba odcina się od przynależnej jej ochrony. W konsekwencji jakiegoś wypadku lub podjętej decyzji nie czuje się już chroniona i lęka się, bo nie potrafi sobie sama poradzić. Ponadto ma kłopoty z wyrażaniem prośby o pomoc. Zdarza się tak, że probuje osłabiać innych, aby ukryć sw&#243;j strach przed brakiem ochrony.
+
+Blokada mentalna :
+Jeśli łysiejesz powinieneś jak najszybciej a nowo nawiązać kontakt ze swoim &quot;ja&quot;, wiedz że zawsze masz wsparcie swojego wew. Boga. Zamiast wierzyć, że nikt nie chce Cię chronić lub, że Twoją powinnoscią jest ochraniać innych powinieneś sprawdzić, czy ludzie, kt&#243;rzy Cię otaczają, naprawdę potrzebują Twojej pomocy, oraz nauczyć się prosić o pomoc. Pozwalaj sobie na pewne rzeczy i przyznawaj się otwarcie, że czasami się boisz.</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Jun-21 01:44 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">10-Jun-21 05:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="852580907671224321" id="message-852580907671224321" title="Message sent: 10-Jun-21 05:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Żołądek</strong>
+Blokada emocjonalna :
+Wszelkie problemy żołądkowe mają bezpośredni związek z trudnościami wakceptowaniu czy kontrolowaniu jakieś sytuacji czu&#39;y osoby. Cierpiący na dolegliwosci żołądka są mało tolerancyjni i odczuwają silny lęk co nie jest w ich guście. Są zamknięci na nowe idee, mają kłopoty z dopasowaniem się do innych lub do spraw, kt&#243;re mogą wpływać na ich plany, przyzwyczajenia i spos&#243;b życia. To często ludzie bardzo krytyczni, co nie pozwala im na elastyczność w relacjach i uniemożliwia się kierowaniem sercem, kt&#243;re za, sze pragnie bezwarunkowo akceptować. Bardzo często r&#243;wnież problemy z żołądkiem mają osoby, kt&#243;re oskarżają się o brak odwagi.
+
+Blokada mentalna:
+Tw&#243;j organizm m&#243;wi Ci, że czas najwyższy bys przestał wszystko i wszystkich kontrolować. Zamiast wierzyć, że jesteś bezsilny, gdyż nie udaje Ci się zmienić ludzi wok&#243;ł siebie czy sytuacji, uwierz w moc jaką posiadasz, by tworzyć jak i kierować własnym życiem. Zaufaj innym, a przede wszystkim sobie i swojemu żołądkowi, kt&#243;ry z pewnością jest wstanie trawić. Nie musisz kierować swoim ciałem, by ono wiedziało w jaki spos&#243;b prawidłowo pracować. Podobnie z iinymi ludźmi, kt&#243;rzy Cie otaczają. Każdy ma inny spos&#243;b widzenia i nie przez przypadek żołądek położony jest w okolicach serca. Wszyscy powinniśmy nauczyć się akceptacji inności. Wszystkie formy kontroli wynikające z lęku blokują Tw&#243;j rozw&#243;j, podobnie jak żołądek blokuję prawidłowy proces trawienia. Postaraj się być bardziej tolerancyjny wobec siebie i innych.</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Jun-21 01:43 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="HelloProsze">
+                                <img class="emoji emoji--small" alt="HelloProsze" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/855963031515299850-56DB3.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">11-Jun-21 01:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="852709575379124254" id="message-852709575379124254" title="Message sent: 11-Jun-21 01:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Pocenie się.</strong>
+Blokada emocjonalna:
+Płyny ustrojowe symbolizują nasze ciało emocjonalne. Ponieważ pot w 95%składa się z wody, problem z poceniem się jest bezpośrenio związane z uczuciami. Osoba, kt&#243;ra nie poci się wystarczająco, przeżywa wiele emocji, kt&#243;ra skrywa głęboko z obawy przed dotknięciem innych os&#243;b. Dodatkowo będzie miała problemy sk&#243;rne.
+Osoba, kt&#243;ra zbytnio się poci,za bardzo powstrzymuje swoje emocje , będąc na skraju wytrzymałości. Ciało m&#243;wi, by wreszcie wyraziła swoje emocje, nawet jeśli nie bedzie sie to innym podobało. Warto przygotować otoczenie na takie wyrzucanie emocji, bo mogą być na początku bardzo intensywne. Jeśli pot wydziela nieprzyjemny zapach osoba czuje do siebie nienawiść, ma sobie za złe wszystkie negatywne emocje,kt&#243;re nagromadziła przez lata. Ważne jest by wybaczyć sobie i innym.
+
+Blokada mentalna:
+Wiadomość, jaką przekazuje Ci ciało, jest jasną : to, w co wierzysz, a co dotyczy twoich emocji i ich wyrażenia nie jest dla Ciebie korzystne, a powstrzymywanie emocji niczemu nie służy. Gdy nauczysz sie wyrażać swoje uczucia, uwierzysz,że  przeżywanie ich nie jest niczym złym. Wszystkie osoby, kt&#243;re starają się blokować emocje, r&#243;wnocześnie blokują swoją wrażliwość. Idealna sytuacja to być wrażliwym nie przeżywając emocji.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="RainbowHeart">
+                                <img class="emoji emoji--small" alt="RainbowHeart" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764359619338174474-6086A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">12-Jun-21 01:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="853253979201601558" id="message-853253979201601558" title="Message sent: 12-Jun-21 01:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Zapalenie staw&#243;w i mięśni.</strong>
+
+Blokada emocjonalna :
+Najczęściej pojawia się u os&#243;b niezwykle twardych wobec siebie, nie pozwalających sobie na wiele rzeczy, kt&#243;re sprawiałby im przyjemność i nie potrafiących wyrazić swoich potrzeb. Osoby z tą dolegliwością wolą raczej, by inni spełniali ich potrzeby, a kiedy tak się nie dzieje są bardzo rozczarowani, urazę i i odczuwają gorycz. Oczekiwania wobec innych i nie przyznawanie się do nich, doprowadzają do starannego wyparcia tej prawdy i tym samym do uczucia bezsilności. U os&#243;b cierpiących na zapalenie staw&#243;w i b&#243;le mięśni występuje brak motywacji i woli, by robić to czego pragną, bardzo często wydają się łagodne, ale w rzeczywistości przepełnione są złością i wstydzą się tego. Emocje, kt&#243;re nagromadzili doprowadzają do paraliżu staw&#243;w i mięśni.
+
+Blokada mentalna :
+Jeśli cierpisz na zapalenie staw&#243;w i b&#243;le mięśni sprawdź dlaczego tak trudno Ci wyrażać prośbę. Jeśli myślisz, że prosząc dla siebie bedziesz egoistą, to sprawdź znaczenie tego słowa i zastan&#243;w się czy naprawdę nim jesteś. Pozw&#243;l sobie r&#243;wnież na powiedzenie &quot;nie&quot;, jeśli nie masz ochoty czegoś wykonać, a jeśli zdecydujesz się to wykonać, to wykonaj to z radością, nie krytykując siebie w głębi. Jeśli robisz wiele dla innych, przyznaj się, że robisz to, bo oczekujesz wdzięczności, nie zaś dlatego, że ktoś Cię do tego zmusza. Daj sobie prawo do poszukania wdzięczności u innych, robiąc coś dla nich. Kiedy zaczniesz się cieszyć z wykonywania r&#243;żnych czynności staniesz się bardziej elastyczny, a Twoje stawy i mięśnie poczują wolność i lekkość.</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Aug-21 02:09 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Jun-21 07:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="855514705211686953" id="message-855514705211686953" title="Message sent: 18-Jun-21 07:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Alergia</strong>
+
+Blokada emocjonalna:
+Alergik bardzo często czuję niechęć do kogoś z zewnątrz i ma trudności z zaakceptowaniem jakiejś osoby lub sytuacji. Łatwo ulega wpływom innych zwłaszcza tych,&#160;na kt&#243;rych sam chciałby mieć wpływ. Staje się więc drażliwy i nieraz ma wrażenie,&#160;że jest atakowany broniąc się nawet wtedy gdy sytuacja tego nie wymaga. Osoba z alergią przeżywa wew.&#160;sprzeczność jedna jej połowa czegoś pragnie druga jej tego zabrania, podobnie w stosunkach z innymi uzależnia od kogoś,&#160;jednak coś podpowiada jej że powinna uwolnić się od tej zależności. W końcu znajduje w ukochanej osobie wiele przykrych wad. Bardzo często rodzice takich os&#243;b miały rozbieżne poglądy na r&#243;żne sprawy,&#160;chorzy chcą też zwr&#243;cić na siebie uwagę zwłaszcza jeżeli alergia prowadzi do atak&#243;w duszności w kt&#243;rych niezbędna jest natychmiastowa pomoc.&#160;
+
+Blokada mentalna:</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Aug-21 02:08 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="855514761324396585" id="message-855514761324396585" title="Message sent: 18-Jun-21 07:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jeśli cierpisz z powodu alergii jak najszybciej znajdź osobę(sytuację)&#160;wobec kt&#243;rej czujesz niechęć,&#160;r&#243;wnocześnie pragnąc jej akceptacji często osoba ta jest ci bardzo bliska. Myślisz&quot; że jeśli będziesz zachowywać się zgodnie z oczekiwaniami tej osoby będziesz kochany. Przyznaj że uzależniłeś się od akceptacji czy wdzięczności z jej strony.&#160;Musisz jak najszybciej przestać wierzyć, że aby być kochanym trzeba być uległym, niezwykle ciekawe jest to że bardzo często można być uczulonym na coś co lubi sie najbardziej.&#160;
+Jeśli reagujesz alergicznie na jakieś produkty spożywcze być może nie potrafisz pozwolić sobie na czerpanie przyjemności z życia.&#160;Jeśli jesteś uczulony na kurz lub sierść zwierząt być może wmawiasz sobie, że jesteś napastowany dlatego uważasz,&#160;że inni są do ciebie wrogo nastawieni&#160; Zmień swe przekonania na temat agresji, generalnie strach jaki odczuwamy wobec innych odzwierciedla nasze wewnętrzne lęki. Zamiast uważać, że uczulenie spowodowane jest jakimś zewnętrznym czynnikiem radzę abyś sprawdził co wydarzyło się w ciągu ostatnich 24 godzin poprzedzających atak alergii. Powinieneś&#160;sprawdzić kim jest osoba kt&#243;ra wydaje ci się nie do zniesienia. W&#160; związku z tym, że jesteśmy w stanie zmieniać ludzi kt&#243;rzy nas otaczają nie pozostaje nic innego jak nauczyć się patrzeć w serce.</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Jun-21 07:30 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Jun-21 08:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="855530834281627659" id="message-855530834281627659" title="Message sent: 18-Jun-21 08:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Alkoholizm i inne Uzależnienia </strong>
+
+Podstawowym problemem os&#243;b uzależnionych jest ich myślenie.&#160;Takie&#160; osoby&#160;często&#160;ustawiają się w roli ofiary i są przekonani,&#160;że nie umieją rozwiązać problemu,&#160;kt&#243;ry pojawił się w ich&#160;życiu. To przeważnie osoby zamknięte w sobie, osoby, kt&#243;re nie umieją przyznawać się do błędu, osoby kt&#243;re nie umieją prosić o pomoc, osoby kt&#243;re na poz&#243;r tworzą bardzo silny obraz siebie,&#160;a w środku są bardzo słabe, oraz osoby chowające traumy z dzieciństwa. Ich&#160;gł&#243;wną&#160;blokadą emocjonalną jest nieumiejętność przyznania się, że nie radzą sobie z jakimś problemem,&#160;kt&#243;ry pojawił się w ich życiu i tylko oni wiedzą jaki to jest problem. Są to osoby, kt&#243;re chowają sw&#243;j problem właśnie wewnątrz siebie przed innymi zatapiając swoje smutki, rozterki,&#160;myśli w kieliszku, w drinku, w trawce lub w jakichś innych używkach. Pijąc uciekają przed światem w kt&#243;rym żyją. Bardzo często blokadą jest niskie poczucie własnej wartości, niska samoocena, strach przed opinią, strach przed ludźmi,&#160;strach przede wszystkim przed ujawnieniem światu prawdy o sobie, że nie jestem tak silny jak gram na zewnątrz. To może być&#160;r&#243;wnież wewnętrzny bunt,&#160;wewnętrzne poczucie niezgody z tym jaki jest świat, jacy są ludzie jednocześnie&#160;z głębokim poczuciem bezsilności i przekonaniem że nic nie może z tym zrobić, by to zmienić.&#160;
+
+Blokada mentalna to przede wszystkim ucieczka przed działaniem. Człowiek kt&#243;ry popada w używki i kt&#243;ry się w nich zatraca, to człowiek, kt&#243;ry&#160;nie chce wziąć odpowiedzialności za&#160;własne życie. Krzyczy w środku, buntuje się w środku, kł&#243;ci się w środku na zewnątrz nie robiąc nic. To ludzie zamknięci w swoim własnym więzieniu myśli, przekonań, wierzeń, często bardzo konserwatywni i zamknięci na jakiekolwiek zmiany. Często wytwarzają sobie iluzje i żyję w niej nie widząc i nie czując jak bardzo krzywdzą swoich bliskich.&#160;
+
+W świecie 3D człowiek wytworzył wiele możliwości ucieczek tj :&#160;alkoholizm, narkomania, lekomania, zajadanie,&#160;zakupoholizm itd. W świecie 4D&#160;depresję.</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Aug-21 02:09 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="855530861583925268" id="message-855530861583925268" title="Message sent: 18-Jun-21 08:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Są to ucieczki&#160;od odpowiedzialności, od życia tu i teraz. W ostatnich latach obserwuję nową formę ucieczki jaką jest sztuczna &quot;duchowość&quot;, ezoteryka i wszystkie jej odmiany. Dla mnie nie r&#243;żni się to nic od alkoholizmu czy jakiś tam innych używek może po prostu nie psuje tak ciała,&#160;natomiast psuje Dusze, zatrzymując ją w miejscu nie dając się rozwijać ale to temat na inne rozkminy<img loading="lazy" class="emoji " alt="😉" title="wink" src="https://twemoji.maxcdn.com/2/svg/1f609.svg">
+
+Powracając do alkoholizmu i&#160;do innych używek podstawą jest walka z własnym ego. Przyznanie się przed sobą do swojej słabości. Przyznanie się, że sobie nie radzi, a przede wszystkim zrozumienia, że wszystko wzięło się od wielkiej niechęci wyjścia&#160; ze&#160;świata  dziecka&#160;do&#160;bycia dorosłym, a tym samym obowiązku wzięcie na siebie odpowiedzialności.</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Jun-21 08:43 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="HelloNMZC">
+                                <img class="emoji emoji--small" alt="HelloNMZC" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764729837608501298-7881A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Aug-21 05:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="877583853638787072" id="message-877583853638787072" title="Message sent: 18-Aug-21 05:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Liszajec</strong>
+
+Blokada emocjonalna
+Liszajec spotyka się gł&#243;wnie u tych kt&#243;rzy nie pozwalają się dotykać innym w sensie emocjonalnym Osoby te chcą się za wszelką cenę chronić obawiając się zbyt wielkiego wpływu innych ludzi stają się zamknięte w sobie zabraniają sobie odczuwanie
+
+Blokada mentalna
+Schorzenie świadczy o tym że nie powinieneś dalej osłaniać się przed innymi,&#160;ale dać sobie prawo do tego, że ich potrzebujesz lepiej aby inni mieli na ciebie jakiś wpływ, dotykali cię tym co robią czy m&#243;wią, niż gdybyś nadal miał zamykać się w sobie. Nie musisz już uważać że wrażliwość jest oznaką słabości i nie umiesz się bronić Jeśli to konieczne</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Aug-21 05:05 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Aug-21 05:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="877589120103370772" id="message-877589120103370772" title="Message sent: 18-Aug-21 05:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>M&#243;zg -&#160;problemy</strong>
+
+Blokada emocjonalna:
+Wszystkie dolegliwości m&#243;zgu związane są z aspektem ja danej osoby, oznacza to, że otrzymujemy niezwykle istotną wiadomość gdyż m&#243;zg jest najważniejszym organem naszego ciała, a&#160;dzięki czaszce jest też najlepiej chroniony. Podobnie powinniśmy postępować z naszym JA,&#160;chronić je przed inwazją z zewnątrz,&#160;osoba kt&#243;ra tego nie robi traci indywidualność i jest taka jaką pragną widzieć inni. Jest głęboko nieszczęśliwa gdyż nie wie kim w rzeczywistości jest.&#160;
+
+Blokada mentalna:
+To oczywiste, że otrzymujesz tak ważny sygnał, najwyższy czas abyś stał się bardziej świadomy iż spos&#243;b w jaki widzisz samego siebie nie jest zgodny z tym kim jest jesteś w rzeczywistości, oraz Kim chciałbyś być. M&#243;zg kieruje ciałem zatem Ja powinno kierować twoim życiem i jak najszybciej ponownie nawiąż kontakt z tym kim jesteś naprawdę i konsekwentnie kreuj swoje życie. Być może przez pewien czas nie&#160;cierpiałes z powodu braku kontaktu z samym sobą ale teraz twoje ciało cię Ostrzega że dłużej tak nie można.</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Aug-21 05:26 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Aug-21 05:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="877591020504748052" id="message-877591020504748052" title="Message sent: 18-Aug-21 05:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Narośl</strong>- <strong>Guzki </strong>
+
+Blokada emocjonalna:
+Wszystkie rodzaje narośli są formą transformacji nadmiaru tkanki w organizmie wskazuję, że człowiek zbyt długo rozpamiętuje jakieś niepowodzenie co uniemożliwia pełne przeżywanie teraźniejszości gdyż pewna jego część nadal żyje przeszłością. Ponieważ narośl na sk&#243;rze jest mało estetyczna wskazuje na trudności jakie dana osoba ma z&#160;dostrzeganiem własnego piękna, aby dowiedzieć się jakiej dziedziny dotyczy przeżyty problem należy sprawdzić i do czego służy część ciała na kt&#243;rej pojawia się narośl.&#160;
+
+Blokada mentalna:
+Organizm sygnalizuje,&#160;że najwyższy czas abyś dostrzegł piękno,&#160;kt&#243;re jest w tobie. Ponadto musisz postarać się brać pod uwagę własne potrzeby zamiast nadal przeżywać to, co stało się w przeszłości. Pozbądź się przekonania, że będziesz złym człowiekiem jeśli będziesz robił to na co naprawdę masz ochotę.&#160;Zamknij drzwi przeszłości,&#160;przebacz sobie oraz innym i zajmij się realizacją własnych dążeń</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Aug-21 05:38 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="heart">
+                                <img class="emoji emoji--small" alt="❤️" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/2764-02CD4.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Aug-21 05:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="877595330349260851" id="message-877595330349260851" title="Message sent: 18-Aug-21 05:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Szyja- b&#243;l</strong>
+
+Blokada emocjonalna:
+Ponieważ szyja jest giętką częścią ciała b&#243;l w tej okolicy wskazuje na brak elastyczności osoba cierpiąca na te dolegliwości nie potrafi stawić czoła jakiejś sytuacji gdyż obawia się że nie będzie w stanie jej dostatecznie kontrolować boi się zobaczyć to co dzieje się za jej plecami stąd b&#243;l uniemożliwiający swobodne poruszanie głową Ponadto udaję, że sytuacja w jakiej się znajduje nie przeszkadza jej choć w rzeczywistości przeżywa wiele na warstwie jących się emocji&#160;
+
+Blokada mentalna:
+B&#243;l kt&#243;ry odczuwasz pojawia się aby cię ostrzec, że pow&#243;d dla kt&#243;rego unikasz rozwiązania danej sytuacji nie jest słuszny. Taka postawa mentalna powoduje sztywność przekonań i z pewnością nie pomaga znaleźć rozwiązania. Jeżeli boisz się tego co dzieje się za twoimi plecami uświadom sobie,&#160;że &#243;w strach jest raczej owocem wyobraźni niż rzeczywistością. Sugeruję abyś sprawdził co tak naprawdę się dzieje i wyraził wobec zainteresowanych swoje obawy&#160;Sprawdź r&#243;wnież czy b&#243;l szyi uniemożliwia ci&#160; potakiwanie głową, czy zaprzeczanie. Jeśli nie możesz powiedzieć &quot;tak&quot;&#160;powody dla kt&#243;rych nie chcesz komuś lub czemuś przytaknąć nie są słuszne i&#160;odpowiedz sobie na pytanie dlaczego tak się dzieje,&#160;czego się obawiasz. Sprawdź czy twoje obawy mają jakiekolwiek podstawy, a&#160;jeśli b&#243;l uniemożliwia powiedzenie tak, ciało m&#243;wi że byłoby to dla ciebie dobre. Tw&#243;j up&#243;r i brak gietkości&#160;bardziej przeszkadzają Ci w życiu niż pomagają. Jeżeli b&#243;l uniemożliwia ci zaprzeczanie czemuś postaraj się przeprowadzić podobną analizę.</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Aug-21 05:50 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="heart">
+                                <img class="emoji emoji--small" alt="❤️" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/2764-02CD4.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction" title="face_with_monocle">
+                                <img class="emoji emoji--small" alt="&#129488;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f9d0-43C9E.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Aug-21 05:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="877597404864602173" id="message-877597404864602173" title="Message sent: 18-Aug-21 05:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Nerwob&#243;le</strong>
+
+Blokada emocjonalna :
+Osoba cierpiąca chcę uciec przed b&#243;lem,&#160;kt&#243;ry odczuła w przyszłości. Gdy jakaś sytuacja przypomina jej o przyszłym b&#243;lu ponownie przeżywa lęki i ma poczucie winy wobec tego co się stało ma silny wewnętrzny rozstr&#243;j i czuję rozgoryczenie pr&#243;buję stępić odczuwanie mając nadzieję że w ten spos&#243;b przestanie cierpieć.&#160;
+
+Blokada mentalna :
+Chęć oddalenia się i odcięcia od b&#243;lu przeżytego w przeszłości wzmaga go tylko w twojej podświadomości. Lepiej byłoby gdybyś stanął z nim twarzą w twarz zamiast wciąż powtarzać sobie,&#160;że cię na to nie stać. Nawet jeśli w przeszłości sytuacja, kt&#243;rą przeżywałeś była niezwykle trudna&#160;nie oznacza to wcale, że teraz gdy jesteś kimś innym będzie to tak samo bolesne. Zaakceptuj że wtedy nie mogło być inaczej i że nie masz się o co obwiniać. Wszystkich coś ogranicza. Tymczasem to co ogranicza cię dziś nie jest tym co ograniczało kiedyś i to co będzie ograniczać cię w przyszłości.</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Aug-21 05:59 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">18-Aug-21 06:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="877600022873636864" id="message-877600022873636864" title="Message sent: 18-Aug-21 06:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Choroba Parkinsona</strong>
+
+Blokada emocjonalna :
+Zazwyczaj choroba Parkinsona występuje u os&#243;b kt&#243;re boją się, że stracą coś na czym bardzo im zależy dlatego najpierw zaatakowane zostają kończyny g&#243;rne. Chorzy najczęściej są osobami sztywnymi, surowymi, od dawna powstrzymujący mi się przed okazywaniem wrażliwości ,słabości i lęk&#243;w zwłaszcza w chwilach gdy brak im zdecydowania. To osoby kt&#243;re chcą wszystko kontrolować jednak choroba m&#243;wi im, że osiągnęły już swoje limity i nie mogą dłużej kontrolować ani siebie ani innych. Ich układ nerwowy jest wyczerpany ciągłym napięciem związanym z nieustannym ukrywaniem uczuć i słabości.&#160;
+
+Blokada mentalna :
+Choroba postępuje powoli, co daje szansę na odwr&#243;cenie procesu chorobowego. Jeśli jesteś chory naucz się ufać Wszechświatowi i ludziom. Zastan&#243;w się czym jest dla ciebie elastyczność ,część ciebie przekonana że ty i inni powinniście zawsze powstrzymywać uczucia i reakcje jest już bardzo zmęczona. Daj sobie prawo do niedoskonałości, do bycia niezdecydowanym a nawet do błądzenia ,w ten spos&#243;b będzie ci łatwiej akceptować taki stan u innych. Zaakceptuj,&#160;że odczuwanie lęku i niepewności są rzeczami ludzkim i zacznij okazywać swoje emocje.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">29-Oct-21 09:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="903565757793828955" id="message-903565757793828955" title="Message sent: 29-Oct-21 09:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Stwardnienie Rozsiane</strong>
+
+Blokada emocjonalna:
+Chory bardzo często chce być twardy aby nie cierpieć w&#160;określonych sytuacjach. Traci wszelką elastyczność,&#160;kt&#243;ra umożliwia dostosowanie się do okoliczności. Ma wrażenie że ktoś igra z jego nerwami. Odczuwa w&#243;wczas silny wewnętrzny bunt przeciwko tej osobie. Jednak gdy przekroczy swoje możliwości, staje wobec faktu, iż nie wie, co dalej robić, w kt&#243;rym kierunku się udać. Osoba taka ma też skłonności do stania w miejscu, brak jej umiejętności. Pragnie aby ktoś się nią zajął ale r&#243;wnocześnie chcę być uznawana za niezależną, gdyż&#160;wstydzi się braku samodzielności. Chcę by wszystko było doskonałe, zbyt dużo od siebie wymaga i za wszelką cenę musi się podobać. Ponieważ nie udaje jej się to,&#160;staje się upośledzona ruchowo co jest świetną wym&#243;wkę, że nie ma tak doskonałego życia jakby pragnęła. Ponadto ma spore trudności z zaakceptowaniem innych os&#243;b kt&#243;re robią zdecydowanie mniej a osiągają więcej.&#160;
+
+Blokada mentalna:
+Im poważniejszy jest tw&#243;j stan tym ważniejszą wiadomość przekazuje ci organizm kt&#243;ry m&#243;wi że powinieneś pozwolić sobie na łagodność i przestać wciąż być twardym wobec samego siebie i myśleć w spos&#243;b nieczuły o innych ludziach. Daj sobie prawo bycia &quot;uzależnionym&quot; w sensie emocjonalnym zanim pozwolisz sobie na bycie całkowicie &quot;uzależnionym&quot; w innym sensie łącznie z rozwojem choroby.&#160;
+Postaraj się o więcej elastyczności nie musisz już tak wiele oczekiwać.&#160;Proponuję abyś przejrzał się ideałowi osoby do jakiego dążysz i przyznał że jego osiągnięcie przekracza twoje możliwości. Przecież nie musisz nikomu nic udowadniać nie musisz już podtrzymywać tego wielkiego lęku że nie będziesz się podobał lęku kt&#243;ry tak skutecznie uniemożliwia ci bycie sobą a zarazem wzrastania w rytmie własnego serca. Być może tak bardzo rozczarowałeś się postawą rodzica (tej samej płci co ty),&#160;że pragniesz teraz z całych sił nie być do niego podobny i wymagasz od siebie tak wiele. Akceptacja i wybaczenie- zwłaszcza samemu sobie, że tak bardzo starałeś się oceniać tego rodzica -&#160;mogą się okazać niezwykle korzystne w procesie zdrowienia. Przejdź proces wewnętrznego wybaczenia, a&#160;może się  okazać że twoja choroba zacznie się cofać.</span>
+
+                                <span class="chatlog__edited-timestamp" title="29-Oct-21 11:34 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">29-Oct-21 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="903577234365882419" id="message-903577234365882419" title="Message sent: 29-Oct-21 10:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Wypadek</strong>
+
+Blokada emocjonalna:
+Osoba ulegająca wypadkowi ma poprzez to zdarzenie poczuć się winna czegoś na&#160;poziomie swojego jestem. Na&#160;przykład matka,&#160;kt&#243;rą&#160;wzywa z&#160;sąsiedniego pokoju dziecko,&#160;udaje że nie słyszy, gdyż czuję, że nie jest to ważna sprawa;&#160;pochłonięta swoimi zajęciami upada i łamie sobie nogę. Zadając pytanie: &quot;O czym myślałam?&quot;, natychmiast pojmuje, że m&#243;wiła sobie, iż jest matką bez serca. Wypadek jest jednym ze sposob&#243;w, kt&#243;ry człowiek wykorzystuje, aby zneutralizować poczucie winy, myśli że w ten spos&#243;b zapłaci za nieodpowiednie zachowanie. Niestety wszystko to dzieje się nieświadomie. Jeżeli skutki wypadku są na tyle groźne,&#160;że uniemożliwiają pracę lub wykonanie jakiejś konkretnej czynności jest to nieświadome odłożenie tych spraw w czasie. Świadome podjęcie takiej decyzji wywołałoby zbyt wielkie poczucie winy.&#160;
+
+Blokada mentalna :
+Musisz pomyśleć nad swoją mentalną percepcją poczucia winy. Według obowiązującego systemu prawnego osoba jest uznana za winną, jeżeli podstawi się jej niezbite dowody intencjonalnej winy. Za każdym razem,&#160;gdy czujesz się winny, zadaj sobie pytanie,&#160;czy rzeczywiście twoim zamiarem było wyrządzenie krzywdy.&#160;
+Czy naprawdę sądzisz że w przedstawionym przykładzie matka pragnęła skrzywdzić swoje dziecko? Gdy ktoś jest rzeczywiście winny prawo przyczyny i skutku bezwarunkowo się z nim zajmie. Wszystko prędzej czy p&#243;źniej i w zależności od rodzaju intencje i powraca do nas. Będąc tego w pełni świadomi, przyjmiemy zwrot godnie i z pełną akceptacją. Będziemy rozumieli,&#160;że wszystko jest uporządkowane wedle Boskiego prawa przyczyny i skutku.
+Jeżeli wypadek został sprowokowany nieświadomie,&#160;abyś m&#243;gł odłożyć coś w czasie lub czegoś zaprzestać, musisz zdać sobie sprawę,&#160;że mogłeś to osiągnąć bez wyrządzenia sobie krzywdy, wystarczyło jedynie podjąć odpowiednią decyzję.&#160;
+Jeżeli wypadek był groźny na przykład złamanie i rany w nim odniesione sprawiają ci duży b&#243;l pielęgnujesz w sobie świadome lub nieświadome agresywne myśli wobec kogoś. W&#160;związku z tym, że nie możesz dłużej tolerować, a także powstrzymać tej agresji, obraca się ona przeciwko Tobie. Musisz za wszelką cenę uwolnić się od groźnych emocji i wyrazić je bezpośrednio wobec osoby, kt&#243;rej dotyczą, nie&#160;zapominając r&#243;wnocześnie o wybaczeniu samemu sobie.</span>
+
+                                <span class="chatlog__edited-timestamp" title="29-Oct-21 11:34 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">29-Oct-21 10:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="903583008680968242" id="message-903583008680968242" title="Message sent: 29-Oct-21 10:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Opryszczka</strong>
+
+Blokada emocjonalna :
+Opryszczka związana jest ze zbyt ostro oceną osoby płci przeciwnej z tendencją do uog&#243;lniania. Coś lub kogoś ocenia się jako wstrętne/wstrętnego,&#160;to r&#243;wnież spos&#243;b na unikanie całowania innych ludzi, a być może konkretnej osoby,&#160;na kt&#243;rej /na kt&#243;rą się złościmy gdyż odczuliśmy z jej strony brak szacunku. Złość nie została jednak wyrażona została na krawędzi ust.&#160;
+
+Blokada mentalna :
+Opryszczka m&#243;wi ci że najwyższy czas abyś zmienił spos&#243;b myślenia o płci przeciwnej. Nie bądź agresywny kochaj. Częste pojawianie się opryszczki jest bardzo ważnym ostrzeżeniem. To sygnał, że spos&#243;b w jaki myślisz uniemożliwia Ci&#160;zbliżenie się do płci przeciwnej, a przecież pragniesz tego kontaktu. To,&#160;że się oddalasz szkodzi jedynie Tobie mimo,&#160;że uważasz, iż jest to spos&#243;b karania innych.</span>
+
+                                <span class="chatlog__edited-timestamp" title="29-Oct-21 11:33 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-21 08:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="904083859061227520" id="message-904083859061227520" title="Message sent: 30-Oct-21 08:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Sk&#243;ra - problemy</strong>
+
+Blokada emocjonalna :
+Og&#243;lnie sk&#243;ra ma związek z poczuciem własnej wartości.&#160;To osłona ciała reprezentująca obraz nas samych o sobie. Jeśli chcemy wiedzieć co o sobie myślimy wystarczy, że opiszemy swoją sk&#243;rę. Na przykład sk&#243;ra gładka - myślę, że jestem delikatny, jeśli sk&#243;ra jest sucha przeczytaj opis rybia łuska poniżej. Wszystkie problemy sk&#243;rne wiążą się z poczuciem wstydu. Osoba taka przywiązuje zbyt dużą wagę do tego co powiedzą o niej inni,&#160;nie pozwala sobie na bycie sobą i łatwo siebie odrzuca. Często czuję, że jej wewnętrzna sp&#243;jność została naruszona. Jest też niezwykle wrażliwa na to,&#160;co dzieje się na zewnątrz, bardzo łatwo ją dotknąć,&#160;a jej samej trudne pokochać siebie taką jaką jest. Jeśli problemowi sk&#243;ry towarzyszy wyciek ropy coś lub ktoś ci śmierdzi do tego stopnia że prowokujesz sytuację,&#160;kt&#243;ra oddali od ciebie tę sprawę. Poważny problem sk&#243;rny jest z pewnością świetną metodą, aby oddalić od siebie innych. Sk&#243;ra pomaga nawiązać kontakt z innymi,&#160;ale może też go zerwać. Osoba może tak bardzo wstydzić się tego,&#160;kim jest lub mogłaby być, że odmawia sobie przywiązania do kogokolwiek i wykorzystuje problemy sk&#243;rne jako usprawiedliwienie. W ten spos&#243;b staje się kimś kogo nie można dotknąć z takiej sytuacji chciałaby r&#243;wnież zmienić sk&#243;rę.&#160;
+Jeśli dana osoba pr&#243;bowała zbliżyć się do kogoś i po fakcie żywi urazy lub nawet nienawiść może wywołać nowotw&#243;r sk&#243;ry. Gdy kłopoty ze sk&#243;rą powodują swędzenie przeczytaj niżej o&#160;świądzie. Jeśli problem sk&#243;rny dotyczy jedynie nask&#243;rka,&#160;człowiek mocno przeżywa jakąś separację, utratę,&#160;kontaktu lub trudność w komunikowaniu się. Odczuwa tę sytuację jako odrzucanie i definitywne zerwanie. To ktoś, kto pragnie uratować innych zwłaszcza osoby płci przeciwnej. miejsce w kt&#243;rym pojawia się problem sk&#243;rny odpowiada dziedzinie życia kt&#243;rej dotyczy konflikt,&#160;na przykład twarz to obawa przed utratą twarzy.&#160;
+
+Blokada mentalna :</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 08:07 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="904083872411680778" id="message-904083872411680778" title="Message sent: 30-Oct-21 08:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Niekt&#243;re fragmenty sk&#243;ry są odsłonięte, dlatego widzisz je zar&#243;wno ty jak i inni. Im bardziej problem&#160;sk&#243;rny jest widoczny i przeszkadza Ci, tym ważniejsza jest wiadomość, że przeszkadzają ci twoje przekonania oraz sposoby myślenia o sobie i najwyższy czas, abyś to dostrzegł,&#160;aby zmienić obraz samego siebie.&#160;Poświęć trochę czasu na zanotowanie wszystkich zalet jakie posiadasz, każdego dnia dopisując do listy kolejną, jeśli przechodzi Ci to z trudem poproś o pomoc innych. Otrzymujesz istotną informacje: pozw&#243;l sobie być człowiekiem obdarzonym zar&#243;wno zaletami jak&#160;i wadami słabościami i ograniczeniami oraz lękami bez przekonania, że nic nie jesteś wart., masz prawo do podejmowania decyzji aby ratować swoją sk&#243;rę nie oskarżając się nawet w&#243;wczas gdy decyzję te nie odpowiadają tym kt&#243;rych kochasz. Twoja wartość zależy od zalet serca twojej wyjątkowości a nie od tego co dzieje się w świecie fizycznym.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="open_hands">
+                                <img class="emoji emoji--small" alt="&#128080;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f450-4C19B.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="904085433472913439" id="message-904085433472913439" title="Message sent: 30-Oct-21 08:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Łuszczyca&#160;</strong>
+
+Łuszczyca to zapalenie sk&#243;ry mogące pojawić się w każdym wieku. Przeczytaj opis <strong>sk&#243;ra- problemy</strong> podany wyżej&#160;pamiętając,&#160;że chory chciałby odnowić swoją sk&#243;rę. Nie czuje się w niej dobrze, myśli że jest niedoceniany i ma trudności z zaakceptowaniem siebie, może nawet cierpieć z powodu zaburzeń tożsamości i chcieć zmienić swoją osobowość na inną. Otrzymuje od swojego ciała wiadomość, że najwyższy czas, aby zaakceptował to kim jest, by zaakceptował zar&#243;wno swoje zalety talenty jak i wady, lęki oraz słabości. Należy to zrobić bez poczucia winy i strachu przed odrzuceniem.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 09:59 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Pray1">
+                                <img class="emoji emoji--small" alt="Pray1" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764870408951693352-19756.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-21 08:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="904087785349201980" id="message-904087785349201980" title="Message sent: 30-Oct-21 08:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Świąd&#160;</strong>
+
+Blokada emocjonalna:
+Świąd pojawia się u osoby, kt&#243;ra ma na coś wielką ochotę jednak nie pozwala sobie na to gdyż czuje się przez kogoś lub przez jakąś sytuację zablokowana. Powstrzymuje się, co wywołuje rosnącą niecierpliwość i rozgoryczenie.&#160;
+
+Blokada mentalna :
+Gdy czujesz swędzenie miejsce w jakim się ono pojawia może ci wskazać z sferę,&#160;w kt&#243;rej czujesz się zablokowany i nie pozwalasz sobie na to na co masz ochotę. Sprawdź do czego służy ta część ciała i jakie dolegliwości mogą się w niej pojawiać. Gdy swędzi Cię sk&#243;ra,&#160;być może zabraniasz sobie tego, czego pragniesz, bojąc się kogoś skrzywdzić lub obawiasz się tego, co inni mogą o tobie pomyśleć. Zamiast doprowadzać do sytuacji w kt&#243;rej pragnienia wywołują bolesne swędzenie, sprawdź czy to czego chcesz jest realne i czy nie jest to po prostu zwykły kaprys. Jeśli tak pozw&#243;l sobie odłożyć go na p&#243;źniej, ustąp i przestań chcieć wszystko regulować według własnego widzimisię. Jeżeli pragnienie to&#160;jest realne miej odwagę na konfrontację ze swoimi obawami i przejdź do działania.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 08:22 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-21 08:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="904090058469048350" id="message-904090058469048350" title="Message sent: 30-Oct-21 08:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Rybia Łuska&#160;</strong>
+
+Blokada emocjonalna :
+Gdy jakieś schorzenie pojawia się w pierwszym okresie życia często pochodzi z poprzedniej egzystencji. Tendencja do wysuszania sk&#243;ry świadczy o zbyt szorstkiej postawię, jaką przyjmujemy w życiu w kontaktach z innymi. Sk&#243;ra reprezentuje osobowość, jaką przedstawiamy na zewnątrz, świadczy o tym jak dana osoba chce&#160;być postrzegana przez innych,&#160;a w tym&#160;przypadku z pewnością nie lubi okazywać swej delikatności wrażliwości.&#160;
+
+Blokada mentalna :
+Jeśli cierpisz na to schorzenie lub masz tendencję do nadmiernego wysuszenia sk&#243;ry, musisz jak najszybciej powiedzieć sobie, że nadszedł czas,&#160;aby wreszcie stać się łagodniejszym dla siebie i ludzi wok&#243;ł. Nie musisz udawać już kogoś kim nie jesteś, a tym samym wciąż mieć się na baczności i stale kontrolować. Znajdź kogoś kogo lubisz i podziwiasz, a&#160;kto okazuje delikatność. Obserwuj go i zauważ,&#160;że osoba ta wcale nie daje się wykorzystywać bardziej niż inni ludzie. Jeśli i ty postąpisz podobnie i staniesz się mniej szorstki oraz zamknięty w sobie poczujesz, że życie wraca do ciebie. Jeśli na tą przypadłość choruje małe dziecko możesz przeczytać mu ten opis, jego dusza dzięki językowi wibracji zrozumie wiadomość jaką chcesz mu przekazać,&#160;jednak na reakcję duszy nigdy nie będziemy mieć wpływu.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 08:31 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-21 08:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="904092301767352380" id="message-904092301767352380" title="Message sent: 30-Oct-21 08:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Zaczerwienienie sk&#243;ry</strong>
+
+Blokada emocjonalna :
+Czerwone plamy czy też rumieniec na sk&#243;rze, kt&#243;re nie bolą ani nie swędzą mogą wskazywać, że osoba kontroluje się aby nie pokazać swojego prawdziwego oblicza do tego stopnia, że uznaje iż musi rzeczywiście odgrywać przyjętą rolę. Bardzo się stara, gdyż czuję lęk i wstyd przed tym, że mogłaby nie sprostać ideałowi,&#160;kt&#243;ry sama stworzyła. Jednak w pewnym momencie wszystko i tak wychodzi najaw. Należy się przyjrzeć w jakiej części ciała występują zaczerwienienia i zastanowić się nad funkcją tego obszaru. Osoby, kt&#243;re łatwo się czerwienią -&#160;zar&#243;wno na twarzy jak i szyi -&#160;kryją w sobie jakiś dawno przeżyty lęk bardzo często związane z przeświadczeniem, że nie uda im się stanąć na wysokości zadania,&#160;to znaczy, że nie mają pożądnej&#160;sobowości. Ogromną trudność sprawia im zaakceptowanie siebie takimi i jakie są.&#160;
+
+Blokada mentalna :
+Powinieneś sobie uświadomić że stworzyłeś ideał trudny do osiągnięcia i że inni z pewnością oni mają wobec ciebie tylu oczekiwań. Sprawdź to zadając im pytanie na ten temat.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 08:40 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-21 08:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="904097062528880692" id="message-904097062528880692" title="Message sent: 30-Oct-21 08:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Rwa Kulszowa</strong>
+
+Blokada emocjonalna :
+Osoba cierpiąca z powodu wrażliwości nerwu kulszowego najczęściej przeżywa silne poczucie braku bezpieczeństwa związane z przyszłością lub nie świadomą obawą przed brakiem środk&#243;w finansowych czy innych d&#243;br materialnych. M&#243;wię tu o procesie nieświadomym, gdyż często są to osoby kt&#243;rym niczego nie brakuje, albo boją się utracić to co mają. Problem dotyczy zatem szczeg&#243;lnie kwestii <strong>mieć</strong>. Osoba jest nieświadoma tego problemu,&#160;gdyż uważa się za kogoś, kto nie jest przywiązany do materialnej strony życia. Bycie materialistką wywołałoby w niej poczucie winy,&#160;gdyż nauczyła się,&#160;że niegodna jest lubić to,&#160;co materialne. To poczucie winy uniemożliwia jej kroczenie do przodu i podejmowanie ryzyka.Życie staje się w&#243;wczas bardzo monotonne. B&#243;l nerwu kulszowego oznacza r&#243;wnież przeżyty uraz,&#160;powstrzymaną&#160;agresję związaną z uleganie komuś lub jakiejś idei, oczywiście w sprawach natury materialnej.&#160;
+
+Blokada mentalna :
+Twoje ciało wysyła ważną wiadomość b&#243;l, kt&#243;ry odczuwasz wiąże się bezpośrednio z b&#243;lem jaki sobie zadajesz, myśląc właśnie w ten spos&#243;b. Chcesz się ukarać? Intensywność b&#243;lu wskazuje jak bardzo chcesz się ukarać. Na początek musisz stać się świadomy przywiązania do d&#243;br materialnych, aby potem m&#243;c zdać sobie prawo do tego przywiązania. Zaakceptuj,&#160;że boisz się utraty tego, co posiadasz.&#160;Jeśli naprawdę nie możesz trochę więcej ryzykować,&#160;gdyż bardzo boisz się utraty tego,&#160;co masz, zaakceptuj to i powiedz sobie,&#160;że przejdziesz do działania, gdy tylko nadarzy się możliwość. Musisz też jak najprędzej przestać myśleć,&#160;że lubić dobra materialne jest rzeczą złą. To ludzkie. W chwili,&#160;gdy będziesz już zdolny tworzyć wszystko,&#160;co jest niezbędne,&#160;na bieżąco&#160; przestaniesz się obawiać,&#160;że czegoś może ci zabraknąć. Będziesz m&#243;gł nadal kochać to, co materialne, nie będąc do tego tak bardzo przywiązanym. Jeśli chodzi o uraz jaki masz do kogoś,sugeruję, abyś zastosował etapy przebaczania. Wybaczenie pozwoli Ci&#160;być bardziej elastycznym w stosunku do idei i charakter&#243;w ludzi, kt&#243;rzy cię otaczają i wyzwolić się z uczucia że musisz być uległy wobec innych.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 09:44 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-21 09:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="904107561937149983" id="message-904107561937149983" title="Message sent: 30-Oct-21 09:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Oczy - problemy&#160;</strong>
+
+Blokada emocjonalna :
+Wszystkie problemy ze wzrokiem wskazują, że wolimy przymknąć na coś oczy niż stracić ważną dla nas rzecz lub osobę. Być może nie akceptujemy też faktu,&#160;że musimy na wszystko mieć oko i zajmować się sprawami, kt&#243;rymi nie chcemy. Oto kilka często używanych wyrażeń związanych z oczami : mieć kogoś na oku skakać sobie do oczu robić coś z zamkniętymi oczami puszczać oko. Jeśli dolegliwość oczu uniemożliwia widzenie rzeczy z bliska, osoba ma trudności z widzeniem tego, co dzieje się wok&#243;ł niej,&#160;na jej ciele lub z jej najbliższymi. To co widzi sprawia, że się boi i zniekształca w ten spos&#243;b rzeczywistość. Niedostrzeganie szczeg&#243;ł&#243;w dotyczących najbliższych jest dla niej wygodne, daje jej poczucie spokoju, gdyż ma wrażenie,&#160;że nic&#160;jej nie przeszkadza, a rzeczy kt&#243;rych nie widzi jej nie dotyczą. Jeśli dolegliwość uniemożliwia widzenie daleko, osoba otrzymuje wiadomość,&#160;że nie chce widzieć przyszłości swojej lub swoich najbliższych. Ma skłonność do odtwarzania nierzeczywistych lęk&#243;w i obaw co do przyszłości,&#160;wyobraża sobie pewne sytuacje r&#243;wnocześnie bojąc się, że się zrealizują. Być może nie chce widzieć tego, co przyniesie przyszłość lub tego,&#160;co od niej oddalone z powodu znużenia bądź wielu rozczarowań jakie spotkały ją w życiu.&#160;
+<em><strong>Lewe oko</strong></em> reprezentuje to,&#160;co widzimy w sobie i co pozostaje pod wpływem nauki matki, gdyż lewa strona związana jest z pierwiastkiem żeńskim.&#160;
+<em><strong>Prawe oko</strong></em> reprezentuje to,&#160;co widzimy na zewnątrz siebie i co pozostaje pod wpływem nauk ojca gdyż prawa strona wiąże się z pierwiastkiem męskim.&#160;
+
+Blokada mentalna :
+Musisz sobie w końcu uświadomić, że nic nie zmieni się w twoim życiu, jeśli nie będziesz widział co rzeczywiście się dzieje. Zamiast obawiać się,&#160;że możesz kogoś lub coś utracić ostań twarzą w twarz z problemami i rozwiązuje na bieżąco. Nie myśl, że widząc rzeczy zbyt wyraźnie nie będziesz miał prawa do popełnienia błęd&#243;w. <em><strong>Nie ma doświadczeń bez popełnienia błęd&#243;w i rozwoju bez doświadczeń.</strong></em> M&#243;wi się,&#160;że oczy są zwierciadłem Duszy, oznacza to,&#160;że wielkie problemy z oczami kryją w sobie bardzo ważną wiadomość jasno wskazując,&#160;że nie podążasz we właściwym dla swojej duszy kierunku, tak aby zrealizować przewidziany dla niej plan życiowy.&#160;Musisz zrozumieć,&#160;że kłopoty ze wzrokiem nie są dziedziczne ani normalne. Jedynie silne przekonanie może wpłynąć na stan oczu&#160;do tego stopnia. Tymczasem najczęściej wiadomość, jaką otrzymujemy poprzez schorzenia oczu, jest dość subtelna. Sugerują więc odpowiedzieć sobie na pytania: <strong>&quot;Co uniemożliwia mi w moim życiu&#160;moje schorzenie? Kim przez swoje schorzenie nie możesz być?</strong> Odpowiedzi na te pytania&#160;pomogą ci wskazać przekonania mające wpływ na tw&#243;j stan wzroku. Jeśli często używasz kt&#243;regoś z wymienionych wcześniej wyrażeń sprawdź lęk towarzyszący ci w chwili, gdy je wypowiadasz, a odkryjesz przekonanie,&#160;kt&#243;re ma negatywny wpływ na twoje oczy.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Oct-21 09:45 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="RainbowHeart">
+                                <img class="emoji emoji--small" alt="RainbowHeart" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764359619338174474-6086A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction" title="white_heart">
+                                <img class="emoji emoji--small" alt="&#129293;" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/1f90d-5A705.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">30-Dec-21 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="926076963620278324" id="message-926076963620278324" title="Message sent: 30-Dec-21 11:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">12 Rodzaj&#243;w b&#243;lu związanych z emocjami... 
+
+1. B&#243;le  głowy i migreny
+B&#243;le głowy i migreny od strony mentalnej związane są z intensywnym stresem każdego dnia. Ludzie, kt&#243;rzy mają przewlekły b&#243;l głowy muszą zadbać o zmniejszenie poziomu stresu, mieć czas dla siebie, skupić się na sobie i swoich potrzebach.
+
+2. B&#243;le szyi, gardła i karku
+Wielu psycholog&#243;w uważa, że ludzie doświadczający b&#243;lu karku powinni wybaczyć więcej tak sobie jak i innym. Dobre jest wybaczenie uczuć wobec innych i siebie i wiara, że wszystko będzie lepiej.
+
+3. B&#243;le barku i okolic łopatek
+Zbyt dużo bierzesz na siebie, w dosłownym tego słowa znaczeniu na za dużo bierzesz „swoje barki”. Chcesz (lub to robisz) działać więcej, szybciej, więcej wziąć na siebie problem&#243;w do rozwiązania, odpowiedzialności. Aby pom&#243;c złagodzić b&#243;l, odpuść sobie trochę, bądź częściej z bliskimi, rodziną , znajomymi. Doceń to co masz i kto jest obok ciebie.
+
+4. B&#243;le kręgosłupa
+B&#243;le kręgosłupa mogą wynikać z niedostatecznego wsparcia, r&#243;wnież psychicznego, związanego r&#243;wnież z poczuciem bycia niedocenionym. Rozmawiaj o tym z bliskimi, wyżal się, poszukaj oparcia nie tylko w innych ale i w sobie. Znajdź nowych znajomych, pasje, odkryj otaczający cię świat i jego piękno
+
+5. B&#243;le w dolnej części plec&#243;w
+Ten rodzaj przewlekłego b&#243;lu zwykle związany jest bardzo często z długotrwałymi problemami finansowych. Skup się na zarządzaniu swoimi dochodami, poszukaj lepszej pracy lub źr&#243;deł dochod&#243;w. Porozmawiaj o podwyżce ze swoim szefem lub zmień pracę.
+
+6. B&#243;le bioder
+B&#243;le bioder związane są często z obawami przed zmianami, brakiem zdecydowania się na p&#243;jście do przodu, lękiem przed dokonaniem wybor&#243;w. Jedyna rada po rozpoznaniu tych stan&#243;w emocjonalnych związanych z lękiem przed zmianami to podjęcie działań i korygowanie tego co potem zacznie się dziać.
+
+7.  B&#243;le rąk (ramion i łokci)
+B&#243;le ramion i b&#243;l łokci mogą wynikać poczucia „utknięcia” i potrzeby zmian. Samo uświadomienie tego faktu jest już zmianą. Zr&#243;b krok do ludzi, znajdź pasję, wyjdź do innych.
+
+8. B&#243;le dłoni
+B&#243;l dłoni oznacza poczucie osamotnienia. Spr&#243;buj znaleźć nowych przyjaci&#243;ł spotykać się ze znajomymi, odkrywać nowych ludzi, pasje, hobby.
+
+9. B&#243;le kolan
+B&#243;le kolan często przytrafiają się osobom, kt&#243;re chcą być perfekcyjne, kt&#243;re myślą o sobie „zbyt wysoko”. Pewność siebie i duma są dobre, ale nie cały czas. Trzeba zdać sobie sprawę, że żaden człowiek nie jest doskonały.
+
+10. B&#243;le łydek
+Napięcie emocjonalne, związane z uczuciem zazdrości mogą powodować b&#243;le łydek (oczywiście jeśli nie ma innych przyczyn natury fizycznej) . Zazdrość powoduje dodatkowy stres.
+
+11. B&#243;le kostek
+Życie monotonne i poczucie braku sensu może powodować b&#243;le kostek. Odpręż się, wyjdź do ludzi, znajdź pasję jakieś dodatkowe hobby. Więcej wrażeń jest wskazane od zaraz.
+
+12. B&#243;le st&#243;p
+Depresja i przeciążenie związane z nieszczęściem, niepokojem powodować może b&#243;le st&#243;p. Wyjdź do ludzi, poznaj nowych przyjaci&#243;ł znajdź nowe hobby. Sprawdź, że życie oferuje radość, piękno i miłość.</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/FB_IMG_1640864246586-74407.jpg">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/FB_IMG_1640864246586-74407.jpg" alt="Image attachment" title="Image: FB_IMG_1640864246586.jpg (56,25 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="RainbowHeart">
+                                <img class="emoji emoji--small" alt="RainbowHeart" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764359619338174474-6086A.png" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction" title="zloty_pyl">
+                                <img class="emoji emoji--small" alt="zloty_pyl" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/764485957251629106-A18BA.png" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction" title="heart">
+                                <img class="emoji emoji--small" alt="❤️" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/2764-02CD4.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/8c08c61d33117de1667dc3ae428bae19-D7100.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Asioha&#129293;#0110" data-user-id="690593264646225952" style="color: rgb(44,255,243)">Asioha&#129293;</span>
+
+
+        <span class="chatlog__timestamp">14-Feb-22 11:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="942921894997405706" id="message-942921894997405706" title="Message sent: 14-Feb-22 11:14 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/FB_IMG_1644154033281-82256.jpg">
+                                <img class="chatlog__attachment-media" src="%F0%9F%8D%80%20Nowa%20Ziemia%20-%20------%F0%9F%8D%81%20%C5%9Bwiadomo%C5%9B%C4%87%20%F0%9F%8D%81----%20-%20%F0%9F%91%A3%E2%94%87cia%C5%82o-emocje%20%5B847490616388616223%5D.html_Files/FB_IMG_1644154033281-82256.jpg" alt="Image attachment" title="Image: FB_IMG_1644154033281.jpg (86,72 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 58 message(s)</div>
+</div>
+
+</body>
+
+</html>
